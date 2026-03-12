@@ -1,0 +1,48 @@
+name: Android APK Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Compute release metadata
+        shell: bash
+        run: |
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            echo "RELEASE_TAG=${GITHUB_REF_NAME}" >> "$GITHUB_ENV"
+            echo "RELEASE_NAME=${GITHUB_REF_NAME}" >> "$GITHUB_ENV"
+          else
+            echo "RELEASE_TAG=android-build-${GITHUB_RUN_NUMBER}" >> "$GITHUB_ENV"
+            echo "RELEASE_NAME=Android Build ${GITHUB_RUN_NUMBER}" >> "$GITHUB_ENV"
+          fi
+
+      - name: Build Docker image
+        run: docker build -t crimesnap-android-builder ./Android
+
+      - name: Build release APK in Docker
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}/Android:/workspace" \
+            crimesnap-android-builder
+
+      - name: Upload APK to GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ env.RELEASE_TAG }}
+          name: ${{ env.RELEASE_NAME }}
+          allowUpdates: true
+          artifacts: Android/app/build/outputs/apk/release/*.apk
+          artifactErrorsFailBuild: true
+          replacesArtifacts: true
