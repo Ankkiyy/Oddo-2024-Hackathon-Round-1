@@ -4,6 +4,84 @@
   margin-top: 20px;
 }
 
+.police-route-links {
+  --route-bg-start: #f7fafc;
+  --route-bg-end: #edf2f7;
+  --route-border: #d9e3f0;
+  --route-title: #1f2937;
+  --route-subtitle: #566174;
+  --route-link-bg: #ffffff;
+  --route-link-border: #dbe3ee;
+  --route-link-shadow: rgba(15, 23, 42, 0.08);
+  --route-link-hover: #f0f7ff;
+  --route-link-accent: #0b6fcf;
+
+  padding: 18px;
+  border: 1px solid var(--route-border);
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--route-bg-start), var(--route-bg-end));
+  box-shadow: 0 10px 24px -18px rgba(9, 30, 66, 0.45);
+}
+
+.police-route-links-header h4 {
+  margin: 0;
+  color: var(--route-title);
+  font-size: 1.15rem;
+  letter-spacing: 0.2px;
+}
+
+.police-route-links-header p {
+  margin: 6px 0 14px;
+  color: var(--route-subtitle);
+  font-size: 0.92rem;
+}
+
+.police-route-links-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.police-route-links-item {
+  margin: 0;
+}
+
+.police-route-link {
+  text-decoration: none;
+  display: block;
+  padding: 12px;
+  border: 1px solid var(--route-link-border);
+  border-radius: 10px;
+  background: var(--route-link-bg);
+  box-shadow: 0 6px 16px -14px var(--route-link-shadow);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+
+.police-route-link:hover {
+  background: var(--route-link-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -16px var(--route-link-shadow);
+}
+
+.route-link-label {
+  display: block;
+  color: var(--route-title);
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.route-link-path {
+  display: inline-block;
+  color: var(--route-link-accent);
+  font-size: 0.8rem;
+  background: #e8f3ff;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
 .crime-list {
   list-style-type: none;
   padding: 0;
@@ -44,6 +122,14 @@
 }
 
 @media (max-width: 768px) {
+  .police-route-links {
+    padding: 14px;
+  }
+
+  .police-route-links-list {
+    grid-template-columns: 1fr;
+  }
+
   .col-lg-3 {
     display: none; /* Hide crime list on smaller screens */
   }

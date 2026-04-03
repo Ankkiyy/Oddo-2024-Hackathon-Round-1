@@ -5,6 +5,7 @@ import PoliceLogin from "./components/users/police/PoliceLogin";
 import PoliceSignup from "./components/users/police/PoliceSignup";
 import PoliceDash from "./components/users/police/PoliceDash";
 import "./App.css";
+import PoliceRouteLinks from "./components/users/police/PoliceRouteLinks";
 
 
 
@@ -14,7 +15,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<>Hello</>} />
+        <Route path="/" element={<PoliceRouteLinks />} />
 
         <Route path="*" element={<>404</>} />
 
@@ -26,10 +27,10 @@ function App() {
 
         {/* Admin Routes */}
 
-        <Route path="/admin/signin" element={<>Admin Login</>} />
+        {/* <Route path="/admin/signin" element={<>Admin Login</>} />
         <Route path="/admin/signup" element={<>Admin Signup</>} />
         <Route path="/admin/profile" element={<>Admin Profile</>} />
-        <Route path="/admin/dashboard" element={<>Admin Dashboard</>} />
+        <Route path="/admin/dashboard" element={<>Admin Dashboard</>} /> */}
 
         {/* Client Routes */}
 

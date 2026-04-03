@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import PoliceRouteLinks from "./PoliceRouteLinks";
 import "leaflet/dist/leaflet.css";
 import "../../assets/css/Dash.css";
 
@@ -125,6 +126,11 @@ const PoliceDash = () => {
       <div className="container">
         <div className="row mb-3 p-5">
           <h1>Police Dashboard</h1>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <PoliceRouteLinks />
+          </div>
         </div>
         <div className="row">
           <div className="col-12 mb-3">
